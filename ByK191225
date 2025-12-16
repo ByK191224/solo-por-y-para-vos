@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sólo por y para vos</title>  <!-- FUENTES -->  <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;1,400&display=swap" rel="stylesheet">  <style>
+    :root {
+      --rosa-1: #fff1f6;
+      --rosa-2: #ffe4ec;
+      --rosa-3: #f8cdda;
+      --rosa-4: #f4acb7;
+      --blanco: #ffffff;
+      --texto: #6d3a4b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, var(--rosa-1), var(--rosa-2));
+      color: var(--texto);
+      min-height: 100vh;
+      font-family: 'Old Standard TT', serif;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* PANTALLA DE INGRESO */
+    .lock {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, var(--rosa-2), var(--rosa-3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      padding: 20px;
+    }
+
+    .lock-card {
+      background: var(--blanco);
+      padding: 30px 25px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      width: 100%;
+      max-width: 360px;
+      animation: slideUp 1s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .lock-card h1 {
+      font-family: cursive;
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+
+    /* BOTONES DEL CÓDIGO */
+    .code-box {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 15px 0;
+    }
+
+    .code-box input {
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      font-size: 1.3em;
+      border-radius: 15px;
+      border: 2px solid var(--rosa-3);
+      background: var(--rosa-1);
+    }
+
+    button {
+      margin-top: 15px;
+      background: var(--rosa-4);
+      border: none;
+      color: white;
+      padding: 14px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1em;
+      width: 100%;
+    }
+
+    /* CONTENIDO */
+    .content {
+      display: none;
+      padding: 30px 15px;
+      text-align: center;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .card {
+      background: var(--blanco);
+      border-radius: 35px;
+      padding: 30px 20px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 18px 35px rgba(0,0,0,0.12);
+      animation: slideUp 1s ease;
+    }
+
+    h2, h3 {
+      font-family: cursive;
+    }
+
+    h2 { font-size: 2.6em; }
+
+    .heart {
+      font-size: 2.8em;
+      margin: 15px 0;
+      animation: latido 1.3s infinite;
+    }
+
+    @keyframes latido {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    .buttons {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .btn {
+      background: var(--rosa-2);
+      color: var(--texto);
+      padding: 16px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover { transform: scale(1.03); }
+
+    /* CARTA */
+    .letter {
+      margin-top: 35px;
+      padding: 30px;
+      background: var(--rosa-1);
+      border-radius: 30px;
+      display: none;
+      animation: unfold 1.2s ease;
+    }
+
+    @keyframes unfold {
+      from { transform: scaleY(0); opacity: 0; }
+      to { transform: scaleY(1); opacity: 1; }
+    }
+
+    .letter p {
+      white-space: pre-line;
+      font-style: italic;
+    }
+
+    footer {
+      margin-top: 25px;
+      font-size: 0.85em;
+      color: #9a6b7a;
+    }
+
+    /* BRILLITOS */
+    .sparkle {
+      position: fixed;
+      top: -10px;
+      font-size: 14px;
+      color: #f4acb7;
+      animation: fall 8s linear infinite;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(110vh); opacity: 0; }
+    }
+      .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(2px);
+      display: none;
+      z-index: 5;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .letter {
+      position: relative;
+      z-index: 6;
+    }
+
+    /* NUBE CARTA 2 */
+    .cloud {
+      background: #fff;
+      border-radius: 60px;
+      padding: 35px 30px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: '';
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .cloud::before {
+      width: 80px;
+      height: 80px;
+      top: -30px;
+      left: 30px;
+    }
+
+    .cloud::after {
+      width: 120px;
+      height: 120px;
+      top: -50px;
+      right: 40px;
+    }
+
+    .soft-name {
+      color: #c98aa2;
+      font-weight: bold;
+    }
+
+    /* ATMÓSFERA ÍNTIMA CUANDO CARTA ABIERTA */
+    .overlay {
+      background: rgba(0,0,0,0.45);
+    }
+
+</style></head>
+<body>  <!-- INGRESO -->  <div class="lock" id="lock">
+    <div class="lock-card">
+      <h1>Sólo por y para vos</h1>
+      <p>Ingresá el código secreto</p><div class="code-box">
+    <input type="text" maxlength="2" id="c1" />
+    <input type="text" maxlength="2" id="c2" />
+    <input type="text" maxlength="2" id="c3" />
+  </div>
+
+  <button onclick="checkCode()">Entrar</button>
+</div>
+
+  </div>  <!-- CONTENIDO -->  <div class="content" id="content">
+    <div class="card">
+      <h2>Sólo por y para vos</h2>
+      <div class="heart">💗</div><p>Esta página existe por una sola razón: vos.</p>
+
+  <div class="buttons">
+    <a class="btn" href="https://open.spotify.com/playlist/1CuqMgJ5mjrmTEA4DWuc7m" target="_blank">🎶 Ir a nuestra playlist</a>
+    <a class="btn" href="https://photos.app.goo.gl/rh2NEGq7dt7A1WND8" target="_blank">📸 Nuestro álbum</a>
+    <button class="btn" onclick="toggleLetter('carta1')">💌 Está carta es para ti</button>
+    <button class="btn" onclick="toggleLetter('carta2')">💍 Para mi esposo</button>
+  </div>
+
+  <div id="overlay" class="overlay" onclick="closeLetters()"></div>
+  <div id="carta1" class="letter">
+    <h3>Está carta es para ti</h3>
+    <p>
+
+Y de pronto, Cuando el día se batía de secretos, Y la noche ardía de relámpagos.
+
+Sobre el paraíso del horizonte, Las gaviotas inventaron el mar.
+
+El mar envió a peces de colores, Como testimonio de la existencia de mi amor sincero.
+
+Y del corazón de una barquita, Bajó a los puertos de arena pulcra, Un niño y una niña, Con nuestras hermosas historias de amor que los crearon, En nuestros sueños más admirados. </p> </div>
+
+<div id="carta2" class="letter cloud">
+    <h3>Para mi esposo</h3>
+    <p>
+
+Querido <span class="soft-name">Bruno</span>, sé que estos meses han sido una locura, locura de las raras, felices, feas y totalmente inesperadas.
+
+La verdad que, te amo, te amo con todas mis fuerzas. Disculpa por no lograr muchos de tus ideales, no satisfacer tus necesidades o no ser tu lugar seguro en muchas ocasiones.
+
+Este año que tenemos tú y yo; yo los sigo contando, una disculpa de antemano si te incomoda; lo he apreciado un montón, amo todo lo que he vivido a tu lado, sea bueno o feliz, sea malo o triste, sea parcial. A tu lado he crecido como persona, a tu lado he logrado muchas cosas y recuerdos.
+
+Eres la persona que quiero que esté a mi lado, ya que no me haces falta pero quiero compartir a tu lado mi vida, tu vida, nuestra vida. Ser lo que soñamos un día y abrazarnos hoy, mañana y siempre.
+
+No soy una persona perfecta, pero estoy dispuesta a trabajar en mí por un "mí" para lograr un "nosotros" y esa es mi meta cada día.
+
+El amor es una elección, la elección de elegirse cada día y seguir. Te amo <span class="soft-name">Bruno Jesús Zapata Meza</span>, te amo infinitamente.
+
+Firma: Karina Lisset Mendoza Márquez.
+
+Tu querida Lissi.
+
+Que este primer año sea el inicio de muchísimos más en nuestra vida. 19 de Diciembre del 2025. </p> </div>
+
+<footer>Hecho sólo por y para vos ✨</footer>
+</div>
+
+  </div>  <script>
+    function checkCode() {
+      const code = `${document.getElementById('c1').value} ${document.getElementById('c2').value} ${document.getElementById('c3').value}`;
+      if (code === '19 12 25') {
+        document.getElementById('lock').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+      } else {
+        alert('Código incorrecto 💔');
+      }
+    }
+
+    function toggleLetter(id) {
+      const overlay = document.getElementById('overlay');
+      const cartas = document.querySelectorAll('.letter');
+      const carta = document.getElementById(id);
+
+      const abierta = carta.style.display === 'block';
+      cartas.forEach(c => c.style.display = 'none');
+
+      if (abierta) {
+        overlay.style.display = 'none';
+      } else {
+        carta.style.display = 'block';
+        overlay.style.display = 'block';
+      }
+    }
+
+    function closeLetters() {
+      document.querySelectorAll('.letter').forEach(c => c.style.display = 'none');
+      document.getElementById('overlay').style.display = 'none';
+    }(id) {
+      const overlay = document.getElementById('overlay');
+      const cartas = document.querySelectorAll('.letter');
+      const carta = document.getElementById(id);
+
+      const abierta = carta.style.display === 'block';
+
+      cartas.forEach(c => c.style.display = 'none');
+
+      if (abierta) {
+        overlay.style.display = 'none';
+      } else {
+        carta.style.display = 'block';
+        overlay.style.display = 'block';
+      }
+    } {
+      const carta = document.getElementById('carta');
+      const overlay = document.getElementById('overlay');
+
+      if (carta.style.display === 'block') {
+        carta.style.display = 'none';
+        overlay.style.display = 'none';
+      } else {
+        carta.style.display = 'block';
+        overlay.style.display = 'block';
+      }
+    }
+  </script>  <!-- BRILLITOS --><span class="sparkle" style="left:10%">✨</span> <span class="sparkle" style="left:30%; animation-delay:2s">✨</span> <span class="sparkle" style="left:55%; animation-delay:4s">✨</span> <span class="sparkle" style="left:75%; animation-delay:1s">✨</span>
+
+</body>
+</html>
