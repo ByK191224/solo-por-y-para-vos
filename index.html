@@ -375,5 +375,16 @@ Que este primer año sea el inicio de muchísimos más en nuestra vida. 19 de Di
     }
   </script>  <!-- BRILLITOS --><span class="sparkle" style="left:10%">✨</span> <span class="sparkle" style="left:30%; animation-delay:2s">✨</span> <span class="sparkle" style="left:55%; animation-delay:4s">✨</span> <span class="sparkle" style="left:75%; animation-delay:1s">✨</span>
 
-</body>
+<script>
+function checkCode() {
+  const input = document.getElementById("code").value.trim();
+
+  if (input === "19 12 25") {
+    document.getElementById("lock").style.display = "none";
+    document.getElementById("content").style.display = "block";
+  } else {
+    alert("Código incorrecto 💔");
+  }
+}
+</script></body>
 </html>
